@@ -43,28 +43,6 @@ The framework combines three main components to achieve inverse-design of reacto
 - Python 3.8+
 - NVIDIA GPU with CUDA support (recommended)
 
-### Required Python Packages
-```bash
-# Core scientific packages
-numpy
-scipy
-pandas
-matplotlib
-
-# Deep learning
-torch
-modulus  # NVIDIA Modulus framework
-
-# Symbolic computation
-sympy
-
-# Optimization
-scipy (for DIRECT algorithm)
-
-# Configuration management
-hydra-core
-```
-
 ### Installation
 ```bash
 # Clone repository
