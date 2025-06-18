@@ -69,7 +69,7 @@ hydra-core
 ```bash
 # Clone repository
 git clone <repository-url>
-cd stirred-reactor-optimization
+cd main
 
 # Install NVIDIA Modulus (follow official installation guide)
 pip install nvidia-modulus
@@ -115,7 +115,7 @@ python flow.py
 - `outputs/flow/optim_checkpoint.*.pth` - Training checkpoint
 - Validation plots comparing PINN vs CFD across blade configurations
 
-**Runtime**: ~2-6 hours (parametric training across geometry space)
+**Runtime**: ~2-6 days (parametric training across geometry space)
 
 ---
 
@@ -154,7 +154,7 @@ python reaction.py
 - Flow rate data in `outputs/reaction/monitors/`
 - Ethylene conversion and polymer MWD analysis
 
-**Runtime**: ~30 minutes
+**Runtime**: ~1 min
 
 ---
 
@@ -191,31 +191,11 @@ python optimization.py
 - `outputs/optimization/parameter_history.npy` - Parameter search history
 - MWD matching results with target distribution
 
-**Runtime**: ~5-10 hours (rapid evaluation < 3 min per candidate)
+**Runtime**: ~5-10 days (rapid evaluation < 1 min per candidate)
 
 ## ⚙️ Configuration
 
-Each script uses Hydra configuration files in the `conf/` directory:
-
-### `config_flow.yaml`
-```yaml
-# Training configuration for flow simulation
-run_mode: 'train'
-optimizer:
-  lr: 1e-3
-training:
-  max_steps: 10000000
-  rec_results_freq: 10000
-```
-
-### `config_reaction.yaml` & `config_optimization.yaml`  
-```yaml
-# Evaluation configuration for reaction/optimization
-run_mode: 'eval'
-training:
-  rec_results_freq: 100
-```
-
+Each script uses Hydra configuration files in the `conf/` directory.
 **Important**: Do not modify the configuration files unless you understand the implications for model training and evaluation.
 
 ## 📊 Key Results
@@ -282,74 +262,6 @@ Target achieved with 99.3% accuracy
 - **Objective**: Minimize MWD RMSE from target distribution
 - **Convergence**: R² score tracking for MWD matching quality
 
-## 🚨 Important Notes
-
-### Memory Management
-- Each optimization iteration requires ~4-8 GB GPU memory
-- Automatic cleanup routines clear GPU memory between evaluations
-- Monitor system resources during long optimization runs
-
-### File Dependencies
-- Step 2 requires trained model from Step 1
-- Step 3 requires trained model from Step 1
-- Missing files will cause runtime errors
-
-### Computational Requirements
-- GPU highly recommended for PINN training
-- CPU-only execution possible but significantly slower
-- Consider cloud computing for large optimization studies
-
-### Validation Data
-- Reference data in `fluent/001.csv` must match expected format
-- Used for model validation and accuracy assessment
-- Can be replaced with experimental data if available
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-**GPU Memory Errors**:
-```bash
-# Reduce batch sizes in configuration files
-# Monitor GPU memory usage
-nvidia-smi
-```
-
-**Training Convergence Issues**:
-```bash
-# Check loss curves in output logs
-# Adjust learning rate or training steps
-# Verify boundary condition implementation
-```
-
-**File Not Found Errors**:
-```bash
-# Ensure previous steps completed successfully
-# Check file paths in scripts
-# Verify output directories exist
-```
-
-### Performance Optimization
-- Use mixed precision training for faster computation
-- Adjust batch sizes based on available GPU memory
-- Consider distributed training for large parameter studies
-
-## 📈 Extensions and Future Work
-
-### Potential Enhancements
-- **Multi-objective optimization** (conversion + mixing time)
-- **Uncertainty quantification** for robust design
-- **Experimental validation** with real reactor data
-- **3D compartmental models** for improved accuracy
-- **Different impeller geometries** (Rushton, pitched blade, etc.)
-- **Heat transfer modeling** for non-isothermal operation
-
-### Research Applications
-- **Process intensification** studies
-- **Scale-up analysis** using dimensionless groups
-- **Control system design** for optimal operation
-- **Digital twin development** for real-time optimization
-
 ## 📄 Citation
 
 If you use this framework in your research, please cite:
@@ -359,7 +271,7 @@ If you use this framework in your research, please cite:
   title={Optimization of Reactor Geometry Using Physics-Informed Neural Networks: Generalizing Flow Fields Across Variable Geometries},
   author={Shin, Sunkyu and Ryu, Yubin and Na, Jonggeol and Lee, Won Bo},
   journal={[Journal Name]},
-  year={2024},
+  year={2025},
   note={Manuscript submitted}
 }
 ```
@@ -371,18 +283,3 @@ If you use this framework in your research, please cite:
 - Won Bo Lee²* - Seoul National University
 
 *Corresponding authors
-
-## 📞 Support
-
-For questions, issues, or contributions:
-- Open an issue on GitHub
-- Check documentation in code comments
-- Review NVIDIA Modulus documentation for PINN details
-
-## 📜 License
-
-[Specify your license here - MIT, Apache 2.0, etc.]
-
----
-
-**Happy optimizing! 🚀**
