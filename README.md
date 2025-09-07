@@ -1,4 +1,4 @@
-# Simultaneous Optimization of Reactor Geometry and Operating Conditions via Geometry-Aware Physics-Informed Neural Networks (PINN)
+# Simultaneous Optimization of Reactor Geometry and Operating Conditions via Geometry-Aware Physics-Informed Neural Networks (GA-PINN)
 
 This repository contains a comprehensive framework for **generalizable Physics-Informed Neural Network (PINN) based CFD simulation**, **compartmental reaction modeling**, and **inverse-design optimization** of autoclave reactors for ethylene polymerization processes. The framework enables blade geometry optimization without multiple CFD runs through parametric learning.
 
@@ -44,8 +44,8 @@ This project is implemented using **[NVIDIA PhysicsNeMo](https://developer.nvidi
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/YubinRyu/Comp-PINN.git
-cd Comp-PINN
+git clone https://github.com/YubinRyu/GA-PINN.git
+cd GA-PINN
 ```
 
 ## 🔄 Workflow
@@ -166,7 +166,7 @@ If you use this framework in your research, please cite:
 
 ```bibtex
 @article{shin2025optimization,
-  title={Optimization of Reactor Geometry Using Physics-Informed Neural Networks: Generalizing Flow Fields Across Variable Geometries},
+  title={Simultaneous Optimization of Reactor Geometry and Operating Conditions via Geometry-Aware Physics-Informed Neural Networks},
   author={Shin, Sunkyu and Ryu, Yubin and Na, Jonggeol and Lee, Won Bo},
   journal={[Journal Name]},
   year={2025},
