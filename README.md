@@ -165,7 +165,7 @@ Each script uses Hydra configuration files in the `conf/` directory.
 If you use this framework in your research, please cite:
 
 ```bibtex
-@article{shin2024optimization,
+@article{shin2025optimization,
   title={Optimization of Reactor Geometry Using Physics-Informed Neural Networks: Generalizing Flow Fields Across Variable Geometries},
   author={Shin, Sunkyu and Ryu, Yubin and Na, Jonggeol and Lee, Won Bo},
   journal={[Journal Name]},
